@@ -45,9 +45,7 @@ jobs:
         run: |
           cd C:\runner2\_work\nopCommerce\nopCommerce
           .sonar\scanner\dotnet-sonarscanner begin /k:"nopCommerce" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
-          cd src
-          dotnet build NopCommerce.sln
-          cd ..
+          dotnet build src\NopCommerce.sln
           .sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 #      - name: JSON Report
 #        run: curl.exe -u your-sonar-token:"${{ secrets.SONAR_TOKEN }}"  GET "http://localhost:9000/api/issues/search?componentKeys=SergioAVega_sonarQubeDotNet_AYuRTcoeMv0giqkxllET" -o sonarqube_report.json
