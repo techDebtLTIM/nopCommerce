@@ -44,7 +44,7 @@ jobs:
       - name: Build and analyze
         run: |
           cd C:\runner2\_work\nopCommerce\nopCommerce
-          .sonar\scanner\dotnet-sonarscanner begin /k:"nopCommerce" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          .sonar\scanner\dotnet-sonarscanner begin /k:"techDebtLTIM_nopCommerce_AYwP1fXKCR2CN_t2aQep" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet build src\NopCommerce.sln
           .sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 #      - name: JSON Report
