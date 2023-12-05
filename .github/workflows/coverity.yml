@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set Up Coverity Analysis
-        uses: coverity/coverity-scan-action@v1
+        uses: coverity/scan-action@master
         with:
           build_command: msbuild /t:Rebuild  # Adjust based on your build command
           language: cs
@@ -24,6 +24,6 @@ jobs:
           msbuild /t:Rebuild  # Adjust based on your build command
 
       - name: Upload Results to Coverity
-        uses: coverity/coverity-upload-action@v1
+        uses: coverity/upload-action@master
         with:
           token: ${{ secrets.COVERITY_TOKEN }}
