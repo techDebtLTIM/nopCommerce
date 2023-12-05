@@ -1,0 +1,29 @@
+name: Coverity Scan
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  coverity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Coverity Analysis
+        uses: coverity/coverity-scan-action@v1
+        with:
+          build_command: msbuild /t:Rebuild  # Adjust based on your build command
+          language: cs
+          token: ${{ secrets.COVERITY_TOKEN }}
+
+      - name: Run MSBuild
+        run: |
+          msbuild /t:Rebuild  # Adjust based on your build command
+
+      - name: Upload Results to Coverity
+        uses: coverity/coverity-upload-action@v1
+        with:
+          token: ${{ secrets.COVERITY_TOKEN }}
