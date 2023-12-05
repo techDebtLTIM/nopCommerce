@@ -1,29 +1,16 @@
+# Your .github/workflows/coverity.yml file.
 name: Coverity Scan
 
+# We only want to test official release code, not every pull request.
 on:
   push:
-    branches:
-      - develop
+    branches: [develop]
 
 jobs:
   coverity:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set Up Coverity Analysis
-        uses: coverity/scan-action@master
-        with:
-          build_command: msbuild /t:Rebuild  # Adjust based on your build command
-          language: cs
-          token: ${{ secrets.COVERITY_TOKEN }}
-
-      - name: Run MSBuild
-        run: |
-          msbuild /t:Rebuild  # Adjust based on your build command
-
-      - name: Upload Results to Coverity
-        uses: coverity/upload-action@master
-        with:
-          token: ${{ secrets.COVERITY_TOKEN }}
+    - uses: actions/checkout@v3
+    - uses: vapier/coverity-scan-action@v1
+      with:
+        token: ${{ secrets.COVERITY_TOKEN }}
